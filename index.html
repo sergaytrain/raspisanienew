@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание поездов</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .pageone {
+            border: 3px solid #333;
+            padding: 10px;
+            background-color: #111;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .one {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1.5fr;
+            border-bottom: 2px solid #0f0;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+        
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-shadow: 0 0 5px #0f0;
+        }
+        
+        .trains {
+            margin-top: 15px;
+        }
+        
+        .electichka {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1.5fr;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dotted #333;
+        }
+        
+        .electichka h2 {
+            font-size: 22px;
+        }
+        
+        .electichka p {
+            color: #f00;
+            margin: 5px 0 0 0;
+            font-size: 18px;
+            animation: blink 1s infinite;
+        }
+        
+        .marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .led-effect {
+            text-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+        }
+        
+        .current-time {
+            text-align: right;
+            margin-bottom: 10px;
+            font-size: 20px;
+            color: #0f0;
+        }
+        
+        .pagetwo {
+            display: none;
+            border: 3px solid #333;
+            padding: 20px;
+            background-color: #111;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            text-shadow: 0 0 5px #0f0;
+        }
+        
+        .pagetwo h1 {
+            font-size: 28px;
+            color: #0f0;
+            margin-bottom: 20px;
+        }
+        
+        .pagetwo p {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        
+        .pagetwo img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="current-time led-effect" id="clock">00:00:00</div>
+    
+    <div class="pageone led-effect">
+        <div class="one">
+            <h2>№ состава</h2>
+            <h2>Сообщение</h2>
+            <h2>Время</h2>
+        </div>
+        <div class="trains">
+            <div class="electichka">
+                <h2>1941</h2>
+                <div class="marquee">
+                    <span>Поезд победы ■ Эшелон победы ■ Поезд победы ■</span>
+                </div>
+                <div>
+                    <h2>16:04/18:05</h2>
+                    <p>С опозданием 4 минуты</p>
+                </div>
+            </div>
+            <div class="electichka">
+                <h2>1942</h2>
+                <div class="marquee">
+                    <span>Поезд победы ■ Эшелон победы ■ Поезд победы ■</span>
+                </div>
+                <div>
+                    <h2>16:04/18:05</h2>
+                    <p></p>
+                </div>
+            </div>
+             <div class="electichka">
+                <h2>1943</h2>
+                <div class="marquee">
+                    <span>Поезд победы ■ Эшелон победы ■ Поезд победы ■</span>
+                </div>
+                <div>
+                    <h2>16:04/18:05</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="electichka">
+                <h2>1944</h2>
+                <div class="marquee">
+                    <span>Поезд победы ■ Эшелон победы ■ Поезд победы ■</span>
+                </div>
+                <div>
+                    <h2>16:04/18:05</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="electichka">
+                <h2>1945</h2>
+                <div class="marquee">
+                    <span>Поезд победы ■ Эшелон победы ■ Поезд победы ■</span>
+                </div>
+                <div>
+                    <h2>16:04/18:05</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="pagetwo">
+        <h1>Работа на Свердловской Железной Дороге</h1>
+        <p>РЖД - самая лучшая и безопасная работа.</p>
+        <img style="border-radius: 15px;" src="image.png" alt="Зайти">
+    </div>
+
+    <audio id="pagetwoSound" preload="auto">
+        <source src="pagetwosound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Обновление времени
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ru-RU', {hour12: false});
+            document.getElementById('clock').textContent = timeString;
+        }
+        
+        setInterval(updateClock, 1000);
+        updateClock();
+        
+        // Эффект мерцания LED
+        const ledElements = document.querySelectorAll('.led-effect');
+        setInterval(() => {
+            ledElements.forEach(el => {
+                el.style.opacity = 0.9 + Math.random() * 0.1;
+            });
+        }, 100);
+        
+        // Переключение между страницами
+        const pageOne = document.querySelector('.pageone');
+        const pageTwo = document.querySelector('.pagetwo');
+        const sound = document.getElementById('pagetwoSound');
+        
+        function togglePages() {
+            const now = new Date();
+            const seconds = now.getSeconds();
+            
+            // Показываем pageTwo каждую минуту на 15 секунд (с 0 по 14 секунду)
+            if (seconds < 15) {
+                pageOne.style.display = 'none';
+                pageTwo.style.display = 'block';
+                
+                // Воспроизводим звук только если он еще не играет
+                if (sound.paused) {
+                    sound.currentTime = 0; // Перематываем на начало
+                    sound.play().catch(e => console.log("Не удалось воспроизвести звук:", e));
+                }
+            } else {
+                pageOne.style.display = 'block';
+                pageTwo.style.display = 'none';
+                
+                // Останавливаем звук, если он играет
+                if (!sound.paused) {
+                    sound.pause();
+                }
+            }
+        }
+        
+        // Проверяем состояние каждую секунду
+        setInterval(togglePages, 1000);
+        togglePages(); // Инициализация при загрузке
+    </script>
+</body>
+</html>
