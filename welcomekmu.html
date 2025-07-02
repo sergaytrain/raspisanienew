@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каменск-Уральский - город с характером</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2a5f8a;
+      --secondary: #e74c3c;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background-color: var(--light);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary), #1a3a5a);
+      color: white;
+      padding: 60px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://svyatural.com/wp-content/uploads/2020/06/kamensk24-e1676372489688.jpg') center/cover;
+      opacity: 0.2;
+      z-index: 0;
+    }
+    
+    header .container {
+      position: relative;
+      z-index: 1;
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease;
+    }
+    
+    .subtitle {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      animation: fadeIn 1.5s ease;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--secondary);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      border: 2px solid var(--secondary);
+      animation: fadeInUp 1s ease;
+    }
+    
+    .btn:hover {
+      background-color: transparent;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .slideshow-container {
+      max-width: 1000px;
+      margin: -40px auto 60px;
+      position: relative;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      animation: fadeIn 2s ease;
+    }
+    
+    .slide {
+      display: none;
+      position: relative;
+      height: 500px;
+    }
+    
+    .slide.active {
+      display: block;
+    }
+    
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .slide-nav {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #bbb;
+      margin: 0 5px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .dot.active {
+      background-color: var(--primary);
+      transform: scale(1.2);
+    }
+    
+    .section {
+      padding: 80px 0;
+      text-align: center;
+    }
+    
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: var(--secondary);
+    }
+    
+    footer {
+      background-color: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 60px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .slide {
+        height: 350px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Каменск-Уральский</h1>
+      <p class="subtitle">Добро пожаловать!</p>
+    </div>
+  </header>
+  
+  <div class="slideshow-container">
+    <div class="slide active">
+      <img src="https://oblgazeta.ru/wp-content/uploads/2024/08/60985693541f8f09c2e4b849e2ddfc61151c7f873b6af7ae85522b5b5b2b6f8cae_origin.jpg" alt="Каменск-Уральский">
+      <div class="slide-caption">
+        <h3>Скала Каменные Ворота</h3>
+        <p>Визитная карточка города</p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <img src="https://media.nakanune.ru/images/pictures/image_big_7207.jpg" alt="Каменск-Уральский">
+      <div class="slide-caption">
+        <h3>Городской пейзаж</h3>
+        <p>Уникальная архитектура промышленного города</p>
+      </div>
+    </div>
+    
+    <div class="slide">
+      <img src="https://svyatural.com/wp-content/uploads/2020/06/kamensk24-e1676372489688.jpg" alt="Каменск-Уральский">
+      <div class="slide-caption">
+        <h3>Река Исеть</h3>
+        <p>Живописные берега и природные красоты</p>
+      </div>
+    </div>
+    
+    <div class="slide-nav">
+      <span class="dot active" onclick="currentSlide(1)"></span>
+      <span class="dot" onclick="currentSlide(2)"></span>
+      <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+  </div>
+  
+  <section id="attractions" class="section">
+    <div class="container">
+      <h2 class="section-title">Достопримечательности</h2>
+      <p>Откройте для себя богатое культурное наследие и природные красоты Каменск-Уральского</p>
+      <!-- Здесь можно добавить карточки с достопримечательностями -->
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025</p>
+    </div>
+  </footer>
+  
+  <script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("slide");
+      let dots = document.getElementsByClassName("dot");
+      
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      
+      for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      
+      for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+      }
+      
+      slides[slideIndex-1].classList.add("active");
+      dots[slideIndex-1].classList.add("active");
+    }
+    
+    // Автоматическое переключение слайдов
+    setInterval(() => {
+      plusSlides(1);
+    }, 5000);
+  </script>
+</body>
+</html>
